@@ -54,7 +54,6 @@ public class Wizard extends Character implements Attacker{
         }
     }
 
-    //  !Need to update!
     @Override
     public void attack(Character character){
         Random random = new Random();
@@ -65,9 +64,13 @@ public class Wizard extends Character implements Attacker{
             this.mana-=5;
         }
 //      Staff hit
-        else{
+        else if(this.mana>=1){
             character.updateHp(character.getHp()-2);
             this.mana+=1;
+        }
+//      Not enough mana for Staff hit
+        else{
+            this.mana+=2;
         }
     }
 }

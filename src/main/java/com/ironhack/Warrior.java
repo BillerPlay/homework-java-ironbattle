@@ -54,7 +54,6 @@ public class Warrior extends Character implements Attacker{
         }
     }
 
-//  !Need to update!
     @Override
     public void attack(Character character){
         Random random = new Random();
@@ -65,10 +64,11 @@ public class Warrior extends Character implements Attacker{
             this.stamina-=5;
         }
 //      Weak Attack
-        else if (!isHeavyAttack && this.stamina<5){
+        else if (this.stamina>=1){
             character.updateHp(character.getHp()-(this.strength/2));
             this.stamina+=1;
         }
+//      Not enough stamina for Weak
         else{
             this.stamina+=2;
         }
