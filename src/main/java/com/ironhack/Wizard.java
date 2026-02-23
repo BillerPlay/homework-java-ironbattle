@@ -1,13 +1,15 @@
 package com.ironhack;
 
+import java.util.Random;
+
 public class Wizard extends Character implements Attacker{
     private int mana;
     private int intelligence;
 
     public Wizard(String name, int hp, int mana, int intelligence) {
         super(name, hp);
-        this.mana = mana;
-        this.intelligence = intelligence;
+        setMana(mana);
+        setIntelligence(intelligence);
     }
 
     public int getMana() {
@@ -15,7 +17,14 @@ public class Wizard extends Character implements Attacker{
     }
 
     public void setMana(int mana) {
-        this.mana = mana;
+        if (mana>=10 && mana <= 50){
+            this.mana = mana;
+        }
+        else{
+            System.out.println("[WARNING]: Mana of wizard is not value between 10 and 50. Setting random value!");
+            Random random = new Random();
+            this.mana = random.nextInt(50-10+1) + 10;
+        }
     }
 
     public int getIntelligence() {
@@ -23,9 +32,27 @@ public class Wizard extends Character implements Attacker{
     }
 
     public void setIntelligence(int intelligence) {
-        this.intelligence = intelligence;
+        if (intelligence>=1 && intelligence <= 50){
+            this.intelligence = intelligence;
+        }
+        else{
+            System.out.println("[WARNING]: Intelligence of wizard is not value between 1 and 50. Setting random value!");
+            Random random = new Random();
+            this.intelligence = random.nextInt(50-1+1) + 1;
+        }
     }
 
+    @Override
+    public void setHp(int hp){
+        if (hp>=50 && hp <=100){
+            updateHp(hp);
+        }
+        else{
+            System.out.println("[WARNING]: HP of Wizard is not value between 50 and 100. Setting random value!");
+            Random random = new Random();
+            updateHp(random.nextInt(100-50+1) + 50);
+        }
+    }
     @Override
     public void attack(Character character){
         //  Will be written in a future
