@@ -53,8 +53,24 @@ public class Warrior extends Character implements Attacker{
             updateHp(random.nextInt(200-100+1) + 100);
         }
     }
+
+//  !Need to update!
     @Override
     public void attack(Character character){
-        //  Will be written in a future
+        Random random = new Random();
+        boolean isHeavyAttack = random.nextBoolean();
+//      Heavy Attack
+        if (isHeavyAttack && this.stamina>=5){
+            character.updateHp(character.getHp()-this.strength);
+            this.stamina-=5;
+        }
+//      Weak Attack
+        else if (!isHeavyAttack && this.stamina<5){
+            character.updateHp(character.getHp()-(this.strength/2));
+            this.stamina+=1;
+        }
+        else{
+            this.stamina+=2;
+        }
     }
 }

@@ -53,8 +53,21 @@ public class Wizard extends Character implements Attacker{
             updateHp(random.nextInt(100-50+1) + 50);
         }
     }
+
+    //  !Need to update!
     @Override
     public void attack(Character character){
-        //  Will be written in a future
+        Random random = new Random();
+        boolean isFireBall = random.nextBoolean();
+//      FireBall
+        if (isFireBall && this.mana>=5){
+            character.updateHp(character.getHp()-this.intelligence);
+            this.mana-=5;
+        }
+//      Staff hit
+        else{
+            character.updateHp(character.getHp()-2);
+            this.mana+=1;
+        }
     }
 }
