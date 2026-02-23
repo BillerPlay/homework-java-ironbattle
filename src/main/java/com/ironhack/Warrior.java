@@ -28,6 +28,6 @@ public class Warrior extends Character implements Attacker{
 
     @Override
     public void attack(Character character){
-        //  Will be written in a future || git commit -m "Filled the classes and interface"
+        //  Will be written in a future
     }
 }
