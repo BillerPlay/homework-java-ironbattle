@@ -55,22 +55,35 @@ public class Warrior extends Character implements Attacker{
     }
 
     @Override
-    public void attack(Character character){
+    public void attack(Character character) {
         Random random = new Random();
         boolean isHeavyAttack = random.nextBoolean();
 //      Heavy Attack
-        if (isHeavyAttack && this.stamina>=5){
-            character.updateHp(character.getHp()-this.strength);
-            this.stamina-=5;
+        if (isHeavyAttack && this.stamina >= 5) {
+            int damage = this.strength;
+            character.updateHp(character.getHp() - damage);
+            this.stamina -= 5;
+            System.out.println(this.getName() +
+                    " used Heavy Attack. Damage: " + damage +
+                    ". Target HP: " + character.getHp() +
+                    ". Stamina: " + this.stamina);
         }
 //      Weak Attack
-        else if (this.stamina>=1){
-            character.updateHp(character.getHp()-(this.strength/2));
-            this.stamina+=1;
+        else if (this.stamina >= 1) {
+            int damage = this.strength / 2;
+            character.updateHp(character.getHp() - damage);
+            this.stamina += 1;
+            System.out.println(this.getName() +
+                    " used Weak Attack. Damage: " + damage +
+                    ". Target HP: " + character.getHp() +
+                    ". Stamina: " + this.stamina);
         }
 //      Not enough stamina for Weak
-        else{
-            this.stamina+=2;
+        else {
+            this.stamina += 2;
+            System.out.println(this.getName() +
+                    " has no stamina and recovers. Stamina: " +
+                    this.stamina);
         }
     }
 }

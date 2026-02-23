@@ -55,22 +55,35 @@ public class Wizard extends Character implements Attacker{
     }
 
     @Override
-    public void attack(Character character){
+    public void attack(Character character) {
         Random random = new Random();
         boolean isFireBall = random.nextBoolean();
 //      FireBall
-        if (isFireBall && this.mana>=5){
-            character.updateHp(character.getHp()-this.intelligence);
-            this.mana-=5;
+        if (isFireBall && this.mana >= 5) {
+            int damage = this.intelligence;
+            character.updateHp(character.getHp() - damage);
+            this.mana -= 5;
+            System.out.println(this.getName() +
+                    " cast Fireball. Damage: " + damage +
+                    ". Target HP: " + character.getHp() +
+                    ". Mana: " + this.mana);
         }
 //      Staff hit
-        else if(this.mana>=1){
-            character.updateHp(character.getHp()-2);
-            this.mana+=1;
+        else if (this.mana >= 1) {
+            int damage = 2;
+            character.updateHp(character.getHp() - damage);
+            this.mana += 1;
+            System.out.println(this.getName() +
+                    " used Staff hit. Damage: " + damage +
+                    ". Target HP: " + character.getHp() +
+                    ". Mana: " + this.mana);
         }
 //      Not enough mana for Staff hit
-        else{
-            this.mana+=2;
+        else {
+            this.mana += 2;
+            System.out.println(this.getName() +
+                    " has no mana and recovers. Mana: " +
+                    this.mana);
         }
     }
 }
